@@ -1,14 +1,10 @@
-# README
-
-* Database creation
+# ChatspaceDB設計
 ## userテーブル
-
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false|
 |name|varchar|null: false|
 |email|midiumtext|null: false,　unique: true|
-
 ### Association
 - has_many :groups_users
 - has_many :group, through: :groups_users
@@ -18,7 +14,6 @@
 |------|----|-------|
 |id|integer|null: false|
 |name|varchar|null: false|
-
 ### Association
 - has_many :groups_users
 - has_many :user, through: :groups_users
@@ -29,7 +24,6 @@
 |id|integer|null: false|
 |user_id|integer|null: false,foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
-
 ### Association
 - belongs_to :group
 - belongs_to :user
@@ -43,7 +37,6 @@
 |image|mediumblob||
 |time|midiumtext|null: false|
 |groups_users_id|integer|null: false|
-
 ### Association
 - belongs_to :post
 
