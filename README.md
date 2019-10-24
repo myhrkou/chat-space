@@ -7,9 +7,11 @@
 |------|----|-------|
 |id|integer|null: false|
 |name|varchar|null: false|
+|email|midiumtext|null: false,　unique: true|
 
 ### Association
 - has_many :groups_users
+- has_many :group, through: :groups_users
 
 ## groupテーブル
 |Column|Type|Options|
@@ -19,6 +21,7 @@
 
 ### Association
 - has_many :groups_users
+- has_many :user, through: :groups_users
 
 ## groups_usersテーブル
 |Column|Type|Options|
