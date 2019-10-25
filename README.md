@@ -2,19 +2,21 @@
 ## userテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|varchar|null: false|
+|name|string|null: false|
 |email|midiumtext|null: false,　unique: true|
 ### Association
 - has_many :groups_users
 - has_many :group, through: :groups_users
+- has_many :post
 
 ## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|varchar|null: false|
+|name|string|null: false|
 ### Association
 - has_many :groups_users
 - has_many :user, through: :groups_users
+- has_many :post
 
 ## groups_usersテーブル
 |Column|Type|Options|
@@ -29,11 +31,8 @@
 ## postテーブル
 |Column|Type|Options|
 |------|----|-------|
-|comment|varchar|null: false|
-|image|mediumblob||
-|time|midiumtext|null: false|
-|groups_users_id|integer|null: false|
+|comment|string|null: false|
+|image|text||
 ### Association
-- belongs_to :post
-
-
+- belongs_to :user
+- belongs_to :group
