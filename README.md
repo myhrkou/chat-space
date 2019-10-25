@@ -7,7 +7,7 @@
 ### Association
 - has_many :groups_users
 - has_many :group, through: :groups_users
-- has_many :post
+- has_many :posts
 
 ## groupテーブル
 |Column|Type|Options|
@@ -16,7 +16,7 @@
 ### Association
 - has_many :groups_users
 - has_many :user, through: :groups_users
-- has_many :post
+- has_many :posts
 
 ## groups_usersテーブル
 |Column|Type|Options|
@@ -26,7 +26,6 @@
 ### Association
 - belongs_to :group
 - belongs_to :user
-- has_many :post
 
 ## postテーブル
 |Column|Type|Options|
