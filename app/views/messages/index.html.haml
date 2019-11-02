@@ -1,14 +1,14 @@
 .header
   .header__top
-    グループを作成しました
+    =render partial:"layouts/notifications"
   .header__left
     .header__left--user
-      test-user
+      =current_user.name
     .header__left--button
-      =link_to root_path,class:"link" do
-        =fa_icon 'edit'
-      =link_to root_path,class:"link" do
-        =fa_icon 'cog'
+      =link_to root_path do
+        =fa_icon 'edit',class:"link"
+      =link_to edit_user_path(current_user) do
+        =fa_icon 'cog',class:"link"
   .header__right
     .header__right--group
       .header__right--group--name
