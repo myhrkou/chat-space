@@ -5,7 +5,7 @@
     .header__left--user
       =current_user.name
     .header__left--button
-      =link_to root_path do
+      =link_to new_group_path do
         =fa_icon 'edit',class:"link"
       =link_to edit_user_path(current_user) do
         =fa_icon 'cog',class:"link"
@@ -20,9 +20,9 @@
         Edit
 .contents
   .contents__sidebar
-    =render partial:"group"
+    =render "messages/group"
   .contents__main
-    = render partial: "post"
+    = render "messages/post"
     .contents__main--footer
       %input.contents__main--footer--input{:type=>"textarea",:placeholder=>"type a message"}
       %label.contents__main--footer--icon
