@@ -1,7 +1,7 @@
 .header {
   width: 100vw;
   white-space: nowrap;
-  position: fixed;
+  // position: fixed;
   &__left {
     width: 260px;
     height: 99px; 
@@ -53,7 +53,8 @@
 
 .contents {
   background-color: #fafafa;
-  padding-top: 99px;
+  // padding-top: 99px;
+  position: fixed;
   &__sidebar {
     width: 260px;
     height: 100vh;
@@ -67,11 +68,12 @@
       &--group {
         font-size: 15px;
         color: #ffffff;
-        padding-bottom: 5px;
+        margin-bottom: 5px;
       }
       &--last {
         font-size: 11px;
         color: #ffffff;
+        margin-bottom: 40px;
       }
     }
   }
