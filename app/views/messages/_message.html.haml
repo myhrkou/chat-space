@@ -1,0 +1,11 @@
+.right__main--post
+  .right__main--post--upper
+    %b.right__main--post--upper--name
+      =message.user.name
+    .right__main--post--upper--time
+      =message.created_at.strftime("%Y/%m/%d %H:%M")
+  .right__main--post--comment
+    - if message.content.present?
+      %p.lower-message__content
+        =message.content
+    = image_tag message.image.url if message.image.present?

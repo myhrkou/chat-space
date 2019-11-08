@@ -91,6 +91,7 @@
 
   .field-label {
     .field_with_errors {
+      width: 100vw;
       display: inline-block;
       color: #d65f4c;
       font-weight: 400;
@@ -99,10 +100,12 @@
 
   .field-input {
     .field_with_errors {
+      width: 100vw;
       position: relative;
 
       &:after {
         content: '';
+        width: 100vw;
         display: block;
         position: absolute;
         top: 0;
