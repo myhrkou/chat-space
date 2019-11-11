@@ -1,11 +1,4 @@
 .contents {
-  .clearfix {
-Ï    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
   .left {
     width: 300px;
     float: left;
@@ -32,7 +25,7 @@
       }
     }
     &__sidebar {
-      height: calc(100vh-100px);
+      height: calc(100vh - 120px);
       padding: 20px 20px 0px;
       overflow: scroll;
       background-color: #2f3e51;
@@ -41,15 +34,17 @@
         &--group {
           font-size: 15px;
           margin-bottom: 5px;
+          color: white;
         }
         &--last {
           font-size: 11px;
+          color: white;
         }
       }
     }
   }
   .right {
-    width: calc(100vw-300px);
+    width: calc(100vw - 300px);
     float: left;
     &__header {
       height: 100px;
@@ -81,11 +76,12 @@
           border: solid 1px #38aef0;
           position: absolute;
           right: 40px;
+          color: #38aef0;
         }
       }
     }
     &__main {
-      height: calc(100vh-190px);
+      height: calc(100vh - 283px);
       padding: 46px 40px;
       background-color: #fafafa;
       overflow: scroll;
@@ -113,18 +109,16 @@
       }
     }
     &__footer {
-      height: 90px;
+      height: 50px;
       padding: 20px 40px;
       background-color: #ddd;
-      position: fixed;
-      bottom: 0;
       &--box {
-        width: 100%;
         position: relative;
+        width: 100%;
         &--input {
           height: 50px;
           width: 100%;
-          padding: 0 40px 0 10px;
+          padding: 0 0 0 10px;
           color: #434a54;
           border-style: none;
         }
@@ -157,7 +151,9 @@
 .new_message {
   display: flex;
 }
-
-%a {
+a {
   text-decoration: none;
+}
+.link{
+  color: white;
 }

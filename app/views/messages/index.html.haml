@@ -6,10 +6,13 @@
         .right__header--group--name
           =@group.name
         .right__header--group--member
-          Member:test-user
+          Member:
+          -@group.users.each do |user|
+            =user.name
       .right__header--edit
-        .right__header--edit--button
-          Edit
+        =link_to edit_group_path(@group) do
+          .right__header--edit--button
+            Edit
     = render partial: "main_chat"
     .right__footer
       =form_for [@group,@message] do |f|
