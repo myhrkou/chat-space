@@ -19,25 +19,6 @@ $(function () {
             `
     return html;
   }
-  function buildmessage1(message) {
-    var html = `<div class="right__main--post">
-                <div class="right__main--post--upper">
-                  <b class="right__main--post--upper--name">
-                    ${message.user}
-                  </b>
-                  <div class="right__main--post--upper--time">
-                    ${message.time}
-                  </div>
-                </div>
-                <div class="right__main--post--comment">
-                  <p class="lower-message__content">
-                    ${message.content}
-                  </p>
-                </div>
-              </div>
-            `
-    return html;
-  }
   $("#new_message").on("submit", function (e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -51,9 +32,7 @@ $(function () {
       contentType: false
     })
       .done(function (message) {
-        console.log(message);
-        var html = message.image != null ? buildmessage(message) : buildmessage1(message)
-        console.log(html);
+        var html = message.image != null ? buildmessage(message) : buildmessage(message)
         if(html==null){
           alert("メッセージを入力してください");
         }else{
