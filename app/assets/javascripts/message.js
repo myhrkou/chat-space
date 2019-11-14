@@ -51,16 +51,20 @@ $(function () {
       contentType: false
     })
       .done(function (message) {
-        var html = message.image != null ? buildmessage(message) : message.content?buildmessage1(message):null
-        if(!message.content&&!message.image){
+        console.log(message);
+        var html = message.image != null ? buildmessage(message) : buildmessage1(message)
+        console.log(html);
+        if(html==null){
           alert("メッセージを入力してください");
-        }
+        }else{
         $('.right__main').append(html);
+        }
         $('#new_message')[0].reset();
         $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
         $(".right__footer--submit").removeAttr("disabled");
       })
-      .fail(function (message) {
+      .fail(function (){
+        $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
         alert("メッセージの送信に失敗しました");
         $(".right__footer--submit").removeAttr("disabled");
       })
