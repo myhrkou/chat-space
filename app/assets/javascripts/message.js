@@ -1,5 +1,5 @@
 $(function () {
-  function buildmessage(message) {
+  function buildmessage(message,image) {
     var html = `<div class="right__main--post">
                   <div class="right__main--post--upper">
                     <b class="right__main--post--upper--name">
@@ -13,28 +13,11 @@ $(function () {
                     <p class="lower-message__content">
                       ${message.content}
                     </p>
-                    <img src="${message.image}" width="200px" height="auto"/>
+                      ${image}
                   </div>
                 </div>
             `
-    var html1 = `<div class="right__main--post">
-            <div class="right__main--post--upper">
-              <b class="right__main--post--upper--name">
-                ${message.user}
-              </b>
-              <div class="right__main--post--upper--time">
-                ${message.time}
-              </div>
-            </div>
-            <div class="right__main--post--comment">
-              <p class="lower-message__content">
-                ${message.content}
-              </p>
-            </div>
-          </div>
-      `
-      
-    return message.image?html:html1
+    return html
   }
   $("#new_message").on("submit", function (e) {
     e.preventDefault();
@@ -49,7 +32,8 @@ $(function () {
       contentType: false
     })
       .done(function (message) {
-        var html = buildmessage(message);
+        var image=message.image?`<img src="`+message.image+`" width="200px" height="auto"/>`:""
+        var html = buildmessage(message,image);
         if(message.content==null){
           alert("メッセージを入力してください");
         }else{
