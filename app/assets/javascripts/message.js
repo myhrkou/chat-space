@@ -32,13 +32,13 @@ $(function () {
       contentType: false
     })
       .done(function (message) {
-        var image=message.image?`<img src="`+message.image+`" width="200px" height="auto"/>`:""
-        var html = buildmessage(message,image);
-        if(message.content==null){
+        if(message.content==null&&message.image==null){
           alert("メッセージを入力してください");
         }else{
-        $('.right__main').append(html);
+        var image=message.image?`<img src="`+message.image+`" width="200px" height="auto"/>`:""
+        var html = buildmessage(message,image);
         }
+        $('.right__main').append(html);
         $('#new_message')[0].reset();
         $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
         $(".right__footer--submit").removeAttr("disabled");
