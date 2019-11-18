@@ -47,7 +47,7 @@ $(function () {
         $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
       })
       .fail(function () {
-        console.log('error');
+        alert('error');
       })
   };
   function buildmessage(message, image) {
