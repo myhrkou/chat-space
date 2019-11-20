@@ -44,7 +44,10 @@ $(function () {
         var html = insertHTML;
         //メッセージを追加
         $('.right__main').append(html);
+        console.log(html);
+        if(html!=""){
         $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
+        }
       })
       .fail(function () {
         alert('error');
@@ -68,7 +71,7 @@ $(function () {
                   </div>
                 </div>
             `
-    return html
+    return html;
   }
   $("#new_message").on("submit", function (e) {
     e.preventDefault();
