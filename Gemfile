@@ -49,7 +49,6 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
-  # gem 'unicorn-worker-killer'
 end
 
 group :development do
