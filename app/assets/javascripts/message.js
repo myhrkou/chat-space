@@ -107,5 +107,4 @@ $(function () {
   });
   console.log(location.href);
   setInterval(reloadMessages, 7000);
-  $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
 });
