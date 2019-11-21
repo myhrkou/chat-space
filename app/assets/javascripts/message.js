@@ -48,7 +48,6 @@ $(function () {
           if (html != "") {
             $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
           }
-          console.log("reload");
         })
         .fail(function () {
           // alert('error');
@@ -105,6 +104,5 @@ $(function () {
         $(".right__footer--submit").removeAttr("disabled");
       })
   });
-  console.log(location.href);
   setInterval(reloadMessages, 7000);
 });
