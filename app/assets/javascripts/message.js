@@ -44,7 +44,6 @@ $(function () {
         var html = insertHTML;
         //メッセージを追加
         $('.right__main').append(html);
-        console.log(html);
         if(html!=""){
         $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
         }
@@ -89,8 +88,9 @@ $(function () {
         if (message.content == null && message.image == null) {
           alert("メッセージを入力してください");
         } else {
-          var image = message.image.url ? `<img src="` + message.image.url + `" width="200px" height="auto"/>` : ""
+          var image = message.image.url ? `<img src="${message.image.url}" width="200px" height="auto"/>` : ""
           var html = buildmessage(message, image);
+          console.log(html);
         }
         $('.right__main').append(html);
         $('#new_message')[0].reset();
