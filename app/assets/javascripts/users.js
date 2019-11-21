@@ -24,13 +24,13 @@ $(function () {
                   <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
                 </div>
                 `
-    $("#chat-group-users.js-add-user").append(html)
+    $(".js-add-user").append(html);
   }
   function addMember(userId) {
     let html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
     $(`#${userId}`).append(html);
   }
- 
+
   $("#user-search-field").on("keyup", function () {
     let input = $("#user-search-field").val();
     $.ajax({
@@ -40,11 +40,21 @@ $(function () {
       dataType: 'json',
     })
       .done(function (users) {
+        id_matrix = document.getElementsByName("group[user_ids][]");
         $("#user-search-result").empty();
         if (users.length != 0) {
-          users.forEach(user => {
-            builduser(user);
-          });
+          for (let l = 0; l < users.length; l++) {
+            for (let i = 0; i < id_matrix.length; i++) {
+              value = id_matrix[i].getAttribute("value");
+              if (value == users[l].id) {
+                l++;
+                continue;
+              }
+            }
+            if (l < users.length) {
+              builduser(users[l]);
+            }
+          }
         } else if (input.length == 0) {
           return false;
         } else {
@@ -54,15 +64,16 @@ $(function () {
       .fail(function () {
         alert("通信エラーです。ユーザーが表示できません。");
       });
-    $(document).on('click', ".chat-group-user__btn--add", function () {
-      var id = $(this).data('user-id');
-      var name = $(this).data('user-name');
-      $(this).parent().remove();
-      adduser(id, name);
-      addMember(id);
-    })
-    $(document).on('click', ".js-remove-btn", function () {
-      $(this).parent().remove();
-    })
   });
+
+  $(document).on('click', ".chat-group-user__btn--add", function () {
+    var id = $(this).data('user-id');
+    var name = $(this).data('user-name');
+    $(this).parent().remove();
+    adduser(id, name);
+    addMember(id);
+  })
+  $(document).on('click', ".js-remove-btn", function () {
+    $(this).parent().remove();
+  })
 });
