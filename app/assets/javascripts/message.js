@@ -1,8 +1,8 @@
 $(function () {
   var buildMessageHTML = function (message) {
-    image = message.image.url ? `<img src="${message.image.url}" class="lower-message__image" " width="200px" height="auto"/>`:""
+    image = message.image.url ? `<img src="${message.image.url}" class="lower-message__image" " width="200px" height="auto"/>` : ""
     //data-message_idが反映されるようにしている
-      var html = `<div class="right__main--post" data-message-id=${message.id}>
+    var html = `<div class="right__main--post" data-message-id=${message.id}>
         <div class="right__main--post--upper">
         <div class="right__main--post--upper--name">
         ${message.user_name}
@@ -20,38 +20,41 @@ $(function () {
         </div>`
     return html;
   };
-  var reloadMessages = function () {
-    //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-    const last_message_id = $('.right__main--post').last().data("message-id");
-    url = location.href.split("/");
-    url.splice(5, 0, "api");
-    url = url.join("/");
-    $.ajax({
-      url: url,
-      type: 'get',
-      dataType: 'json',
-      data: { id: last_message_id }
-    })
-      .done(function (messages) {
-        //追加するHTMLの入れ物を作る
-        var insertHTML = '';
-        //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
-        messages.forEach(message => {
-          var htmlbox = buildMessageHTML(message);
-          insertHTML += htmlbox;
-        });
-        //メッセージが入ったHTMLを取得
-        var html = insertHTML;
-        //メッセージを追加
-        $('.right__main').append(html);
-        if(html!=""){
-        $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
-        }
+  if (location.href.match(/messages/)) {
+    var reloadMessages = function () {
+      //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+      const last_message_id = $('.right__main--post').last().data("message-id");
+      url = location.href.split("/");
+      url.splice(5, 0, "api");
+      url = url.join("/");
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        data: { id: last_message_id }
       })
-      .fail(function () {
-        alert('error');
-      })
-  };
+        .done(function (messages) {
+          //追加するHTMLの入れ物を作る
+          var insertHTML = '';
+          //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+          messages.forEach(message => {
+            var htmlbox = buildMessageHTML(message);
+            insertHTML += htmlbox;
+          });
+          //メッセージが入ったHTMLを取得
+          var html = insertHTML;
+          //メッセージを追加
+          $('.right__main').append(html);
+          if (html != "") {
+            $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
+          }
+          console.log("reload");
+        })
+        .fail(function () {
+          // alert('error');
+        })
+    };
+  }
   function buildmessage(message, image) {
     var html = `<div class="right__main--post" data-message-id="${message.id}">
                   <div class="right__main--post--upper">
@@ -90,7 +93,6 @@ $(function () {
         } else {
           var image = message.image.url ? `<img src="${message.image.url}" width="200px" height="auto"/>` : ""
           var html = buildmessage(message, image);
-          console.log(html);
         }
         $('.right__main').append(html);
         $('#new_message')[0].reset();
@@ -103,8 +105,7 @@ $(function () {
         $(".right__footer--submit").removeAttr("disabled");
       })
   });
+  console.log(location.href);
+  setInterval(reloadMessages, 7000);
   $('.right__main').animate({ scrollTop: $('.right__main')[0].scrollHeight });
-  if (location.href.indexOf("http://localhost:3000/groups/") === 0) {
-    setInterval(reloadMessages, 7000);
-  }
 });
